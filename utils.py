@@ -24,6 +24,16 @@ def plot_confusion_matrix(true, predicted, labels=["Neutral", "Favour", "Against
     return ax
 
 
+def get_batch(step, batch_size, z):
+    
+    from math import ceil
+    
+    batches = ceil(len(z[0]) / batch_size)
+    i = step % batches
+    start, end = i * batch_size, min((i + 1) * batch_size, len(z[0]))
+    return [a[start:end].cuda() for a in z]
+
+
 def print_misclassifications(dataset, predictions, pair=None):
     
     """ Prints the misclassifications; if pair is given, only the misclassification
