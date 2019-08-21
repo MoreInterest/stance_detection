@@ -22,3 +22,25 @@ def plot_confusion_matrix(true, predicted, labels=["Neutral", "Favour", "Against
     fig.tight_layout()
     
     return ax
+
+
+def print_misclassifications(dataset, predictions, pair=None):
+    
+    """ Prints the misclassifications; if pair is given, only the misclassification
+    having true label pair[0] and predicted label pair[1] are printed. """
+    
+    def get_stance_string(z):
+        if z == 0:
+            return "Neutral"
+        elif z == 1:
+            return "Favour"
+        elif z == 2:
+            return "Against"
+    
+    for text, target, stance, predicted_stance in zip(dataset.texts, dataset.targets, dataset.stances, predictions):
+        if stance != predicted_stance:
+            if pair is None or (stance == pair[0] and predicted_stance == pair[1]):
+                print("Text:\t\t{}".format(text))
+                print("Target:\t\t{}".format(target))
+                print("Stance:\t\t{}".format(get_stance_string(stance)))
+                print("Prediction:\t{}\n".format(get_stance_string(predicted_stance)))
