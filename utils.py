@@ -54,3 +54,17 @@ def print_misclassifications(dataset, predictions, pair=None):
                 print("Target:\t\t{}".format(target))
                 print("Stance:\t\t{}".format(get_stance_string(stance)))
                 print("Prediction:\t{}\n".format(get_stance_string(predicted_stance)))
+                
+                
+def save_state_dict(state_dict, name):
+    
+    import pickle
+    
+    pickle.dump(state_dict, open("state_dicts/" + name + ".pickle", "wb"))
+    
+
+def load_state_dict(name):
+    
+    import pickle
+    
+    return pickle.load(open("state_dicts/" + name + ".pickle", "rb"))
