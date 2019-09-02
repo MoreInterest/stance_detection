@@ -246,7 +246,7 @@ class SemEvalUnseenUnlabelled(StanceDataset):
         
 class FactmataDataset(StanceDataset):
     
-    def __init__(self, path="/media/glacier/matteo/data/factmata_stance.csv", subset=None):
+    def __init__(self, path, subset=None):
         df = pd.read_csv(path)
         if subset:
             df = df[df["Topic"] == subset]
@@ -260,7 +260,7 @@ class FactmataDataset(StanceDataset):
         
 class FactmataUnlabelledDataset(StanceDataset):
     
-    def __init__(self, path="/media/glacier/marc/bert-tuning/vaccine-bert/bert_ready_vaccine.txt", limit=None, minimum_length=20, maximum_length=100):
+    def __init__(self, path, limit=None, minimum_length=20, maximum_length=100):
         raw_lines = open(path, "r").readlines()
         lines = []
         for line in raw_lines:

@@ -3,6 +3,8 @@ def plot_confusion_matrix(true, predicted, labels=["Neutral", "Favour", "Against
     from sklearn.metrics import confusion_matrix
     from matplotlib import pyplot as plt
     import numpy as np
+    
+    plt.style.use("default")
 
     cm = confusion_matrix(true, predicted)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
